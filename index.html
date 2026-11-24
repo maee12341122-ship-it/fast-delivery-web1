@@ -48,13 +48,24 @@
       color: var(--text-main);
       line-height: 1.65;
       overflow-x: hidden;
+      padding-bottom: 84px;
       background-image:
         radial-gradient(circle at 85% 10%, rgba(245, 184, 0, 0.12), transparent 38%),
         radial-gradient(circle at 15% 80%, rgba(245, 184, 0, 0.07), transparent 40%);
     }
 
+    /* محاولة إخفاء أو إبعاد أي شارة خارجية عائمة في الزاوية السفلية دون المساس بمحتوى الصفحة */
+    body > a[href*="netlify"],
+    body > div[style*="position: fixed"][style*="bottom"],
+    body > iframe[style*="bottom"] {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      transform: translateY(150%) !important;
+    }
+
     main {
-      padding-bottom: 90px;
+      padding-bottom: 48px;
     }
 
     .container {
@@ -72,7 +83,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(11, 12, 14, 0.85);
+      background: rgba(11, 12, 14, 0.88);
     }
 
     .nav {
@@ -136,7 +147,7 @@
 
     /* Hero */
     .hero {
-      padding: 52px 0 36px;
+      padding: 48px 0 36px;
       text-align: center;
     }
 
@@ -291,7 +302,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 44px;
+      margin-bottom: 32px;
     }
 
     .info-banner h4 {
@@ -351,7 +362,7 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 24px 0 90px;
+      padding: 28px 0 40px;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -497,6 +508,21 @@
         document.getElementById(id).classList.remove('active');
       }
     }
+
+    // إبعاد أي شارة خارجية تُضاف ديناميكياً في أسفل الصفحة
+    function cleanFloatingBadges() {
+      document.querySelectorAll('body > a, body > div, body > iframe').forEach(el => {
+        if (!el.closest('header, main, footer, .modal-backdrop')) {
+          const text = (el.innerText || '').toLowerCase();
+          const href = (el.getAttribute('href') || '').toLowerCase();
+          if (text.includes('netlify') || href.includes('netlify')) {
+            el.style.setProperty('display', 'none', 'important');
+          }
+        }
+      });
+    }
+    window.addEventListener('load', cleanFloatingBadges);
+    new MutationObserver(cleanFloatingBadges).observe(document.body, { childList: true, subtree: false });
   </script>
 </body>
 </html>
