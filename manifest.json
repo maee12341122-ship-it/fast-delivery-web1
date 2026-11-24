@@ -1,0 +1,37 @@
+{
+  "name": "فاست ديليفري تعز | FAST Delivery Taiz",
+  "short_name": "FAST",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#FFC107",
+  "description": "أسرع تطبيق لتوصيل الطلبات والوجبات الطازجة وخدمة وصل لي الخاصة إلى باب منزلك في تعز.",
+  "lang": "ar",
+  "dir": "rtl",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "icons/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/Icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
