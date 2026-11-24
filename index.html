@@ -48,13 +48,12 @@
       color: var(--text-main);
       line-height: 1.65;
       overflow-x: hidden;
-      padding-bottom: 84px;
+      padding-bottom: 60px;
       background-image:
         radial-gradient(circle at 85% 10%, rgba(245, 184, 0, 0.12), transparent 38%),
         radial-gradient(circle at 15% 80%, rgba(245, 184, 0, 0.07), transparent 40%);
     }
 
-    /* محاولة إخفاء أو إبعاد أي شارة خارجية عائمة في الزاوية السفلية دون المساس بمحتوى الصفحة */
     body > a[href*="netlify"],
     body > div[style*="position: fixed"][style*="bottom"],
     body > iframe[style*="bottom"] {
@@ -65,7 +64,7 @@
     }
 
     main {
-      padding-bottom: 48px;
+      padding-bottom: 40px;
     }
 
     .container {
@@ -195,7 +194,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 14px 26px;
+      padding: 14px 28px;
       border-radius: 14px;
       font-size: 1rem;
       font-weight: 800;
@@ -225,16 +224,6 @@
     .btn-secondary:hover {
       background: var(--bg-card-hover);
       border-color: rgba(245, 184, 0, 0.4);
-    }
-
-    .btn-whatsapp {
-      background: #163022;
-      color: #4ADE80;
-      border: 1px solid rgba(74, 222, 128, 0.3);
-    }
-
-    .btn-whatsapp:hover {
-      background: #1D3F2D;
     }
 
     /* Quick Actions Grid */
@@ -362,7 +351,7 @@
 
     footer {
       border-top: 1px solid var(--border);
-      padding: 28px 0 40px;
+      padding: 28px 0 36px;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -407,11 +396,6 @@
         <a href="https://fast-delivry-app.netlify.app/" class="btn btn-secondary">
           🌐 الدخول عبر المتصفح مباشرة
         </a>
-
-        <!-- استبدل الرقم أدناه برقم الواتساب الخاص بخدمة العملاء -->
-        <a href="https://wa.me/967770000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8%20%D8%B9%D8%A8%D8%B1%20%D9%81%D8%A7%D8%B3%D8%AA%20%D8%AF%D9%8A%D9%84%D9%8A%D9%81%D8%B1%D9%8A%20%D8%AA%D8%B9%D8%B2" target="_blank" rel="noopener" class="btn btn-whatsapp">
-          💬 اطلب مباشرة عبر واتساب
-        </a>
       </div>
     </section>
 
@@ -455,8 +439,7 @@
       <p style="margin-bottom: 8px;">© 2026 فاست ديليفري تعز (FAST Delivery Taiz) - جميع الحقوق محفوظة</p>
       <div>
         <a onclick="openModal('guideModal')">التعليمات</a> •
-        <a onclick="openModal('termsModal')">شروط الاستخدام</a> •
-        <a href="https://wa.me/967770000000" target="_blank" rel="noopener">تواصل معنا</a>
+        <a onclick="openModal('termsModal')">شروط الاستخدام</a>
       </div>
     </div>
   </footer>
@@ -493,7 +476,7 @@
       <h3>📲 تحميل تطبيق FAST للأندرويد</h3>
       <ul>
         <li>بمجرد رفع ملف <strong>FAST-Delivery.apk</strong>، ضع رابطه المباشر مكان <code>#apk-link</code> في هذا الملف ليبدأ التحميل فوراً.</li>
-        <li>يمكنك حالياً استخدام زر <strong>«الدخول عبر المتصفح مباشرة»</strong> أو الطلب عبر <strong>واتساب</strong>.</li>
+        <li>يمكنك حالياً استخدام زر <strong>«الدخول عبر المتصفح مباشرة»</strong> لتصفح المطاعم والطلبات.</li>
       </ul>
       <button class="btn btn-primary" style="width:100%" onclick="document.getElementById('apkModal').classList.remove('active')">موافق</button>
     </div>
@@ -509,7 +492,6 @@
       }
     }
 
-    // إبعاد أي شارة خارجية تُضاف ديناميكياً في أسفل الصفحة
     function cleanFloatingBadges() {
       document.querySelectorAll('body > a, body > div, body > iframe').forEach(el => {
         if (!el.closest('header, main, footer, .modal-backdrop')) {
