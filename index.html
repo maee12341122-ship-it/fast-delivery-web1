@@ -24,15 +24,11 @@
     }
 
     body > a[href*="netlify"],
-    body > div[style*="position: fixed"][style*="bottom"],
-    body > iframe[style*="bottom"],
-    a[href*="netlify.com/?utm_campaign=cta"] {
+    a[href*="netlify.com"] {
       display: none !important;
       opacity: 0 !important;
       pointer-events: none !important;
       visibility: hidden !important;
-      width: 0 !important;
-      height: 0 !important;
     }
   </style>
 </head>
@@ -41,41 +37,31 @@
 
   <script>
     function hideNetlifyBadge() {
-      const targets = document.querySelectorAll('body > a, body > div, body > iframe');
-      targets.forEach((el) => {
-        if (el.tagName === 'FLT-GLASS-PANE') return;
+      document.querySelectorAll('body > a, body > div, body > iframe').forEach((el) => {
+        if (el.tagName === 'FLT-GLASS-PANE' || el.closest('flt-glass-pane')) return;
         const text = (el.innerText || '').toLowerCase();
         const href = (el.getAttribute('href') || '').toLowerCase();
         const id = (el.id || '').toLowerCase();
         const cls = (el.className || '').toString().toLowerCase();
-        const styleAttr = (el.getAttribute('style') || '').toLowerCase();
-
-        const isFixedBottom =
-          styleAttr.includes('position: fixed') && styleAttr.includes('bottom');
 
         if (
-          text.includes('netlify') ||
-          href.includes('netlify') ||
+          text.includes('powered by netlify') ||
+          href.includes('netlify.com') ||
           id.includes('netlify') ||
-          cls.includes('netlify') ||
-          isFixedBottom
+          cls.includes('netlify')
         ) {
           el.style.setProperty('display', 'none', 'important');
           el.style.setProperty('opacity', '0', 'important');
           el.style.setProperty('pointer-events', 'none', 'important');
-          el.style.setProperty('visibility', 'hidden', 'important');
         }
       });
     }
 
-    window.addEventListener('DOMContentLoaded', hideNetlifyBadge);
     window.addEventListener('load', hideNetlifyBadge);
-    setInterval(hideNetlifyBadge, 600);
-
-    const badgeObserver = new MutationObserver(hideNetlifyBadge);
-    badgeObserver.observe(document.documentElement, {
+    setInterval(hideNetlifyBadge, 800);
+    new MutationObserver(hideNetlifyBadge).observe(document.body, {
       childList: true,
-      subtree: true
+      subtree: false
     });
   </script>
 </body>
