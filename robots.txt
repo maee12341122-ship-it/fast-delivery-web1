@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://fast-delivery-taiz.vercel.app/sitemap.xml
+Sitemap: https://web-web-1-blue.vercel.app/sitemap.xml
